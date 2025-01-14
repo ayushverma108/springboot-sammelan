@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Book;
-import com.example.demo.service.BookService;
 import com.example.demo.service.BookServiceImpl;
-import jakarta.persistence.PostUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,5 +50,12 @@ public class BookController {
     @GetMapping("/books/sortByTitle")
     public List<Book> getBooksSortedByTitle(){
         return bookService.getBooksSortedByTitle();
+    }
+
+    @GetMapping("/books/filtered")
+    public List<Book> getFilteredData(@RequestParam(required = false) Double minPrice,
+                                      @RequestParam(required = false, defaultValue = "title") String sortBy,
+                                      @RequestParam(required = false , defaultValue = "asc") String order){
+        return bookService.getFilteredData(minPrice,sortBy,order);
     }
 }

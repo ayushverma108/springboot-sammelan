@@ -76,4 +76,20 @@ public class BookServiceImpl implements BookService{
     public List<Book> getBooksSortedByTitle() {
         return getAllBooks().stream().sorted(Comparator.comparing(Book::getTitle).thenComparing(Book::getQuantityOrdered)).toList();
     }
+
+    @Override
+    public List<Book> getFilteredData(Double minPrice, String sortBy, String order) {
+        List<Book> bookPrice = bookRepo.findAll().stream().filter((a)->a.getPrice()>minPrice).toList();
+        List<Book> sort = new ArrayList<>(switch (sortBy) {
+            case "title" -> bookPrice.stream().sorted(Comparator.comparing(Book::getTitle)).toList();
+            case "author" -> bookPrice.stream().sorted(Comparator.comparing(Book::getAuthor)).toList();
+            case "date" -> bookPrice.stream().sorted(Comparator.comparing(Book::getDate)).toList();
+            default -> bookPrice.stream().sorted(Comparator.comparing(Book::getPrice)).toList();
+        });
+        if(order.equals("desc")){
+            Collections.reverse(sort);
+            return sort;
+        }
+        return sort;
+    }
 }

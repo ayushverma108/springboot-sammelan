@@ -22,4 +22,6 @@ public interface BookService {
     Double getMaxPrice();
 
     List<Book> getBooksSortedByTitle();
+
+    List<Book> getFilteredData(Double minPrice, String sortBy, String order);
 }
