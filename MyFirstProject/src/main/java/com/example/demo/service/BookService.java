@@ -20,4 +20,6 @@ public interface BookService {
     List<Book> getBooksAboveThreshold(Double threshold);
 
     Double getMaxPrice();
+
+    List<Book> getBooksSortedByTitle();
 }

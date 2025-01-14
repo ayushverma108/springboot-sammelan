@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -68,5 +70,10 @@ public class BookServiceImpl implements BookService{
 //        return price;
 
         return bookRepo.findAll().stream().mapToDouble((a)->a.getPrice()*a.getQuantityOrdered()).sum();
+    }
+
+    @Override
+    public List<Book> getBooksSortedByTitle() {
+        return getAllBooks().stream().sorted(Comparator.comparing(Book::getTitle).thenComparing(Book::getQuantityOrdered)).toList();
     }
 }

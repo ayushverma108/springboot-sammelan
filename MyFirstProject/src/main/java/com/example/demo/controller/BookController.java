@@ -48,4 +48,9 @@ public class BookController {
     public Double getMaxPrice(){
         return bookService.getMaxPrice();
     }
+
+    @GetMapping("/books/sortByTitle")
+    public List<Book> getBooksSortedByTitle(){
+        return bookService.getBooksSortedByTitle();
+    }
 }
