@@ -18,4 +18,6 @@ public interface BookService {
     List<Book> getBookByTitle(String title);
 
     List<Book> getBooksAboveThreshold(Double threshold);
+
+    Double getMaxPrice();
 }

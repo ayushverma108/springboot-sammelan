@@ -47,13 +47,26 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public List<Book> getBooksAboveThreshold(Double threshold) {
-        List<Book> book = bookRepo.findAll();
-        List<Book> output = new ArrayList<>();
-        for(Book b: book){
-            if(b.getPrice() > threshold){
-                output.add(b);
-            }
-        }
-        return output;
+//        List<Book> book = bookRepo.findAll();
+//        List<Book> output = new ArrayList<>();
+//        for(Book b: book){
+//            if(b.getPrice() > threshold){
+//                output.add(b);
+//            }
+//        }
+//        return output;
+
+        return bookRepo.findAll().stream().filter((a)->a.getPrice()>threshold).toList();
+    }
+
+    @Override
+    public Double getMaxPrice() {
+//        double price = 0.0;
+//        for(var b : bookRepo.findAll()){
+//            price += b.getPrice()*b.getQuantityOrdered();
+//        }
+//        return price;
+
+        return bookRepo.findAll().stream().mapToDouble((a)->a.getPrice()*a.getQuantityOrdered()).sum();
     }
 }

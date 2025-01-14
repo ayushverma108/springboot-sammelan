@@ -43,4 +43,9 @@ public class BookController {
     public List<Book> getBooksAboveThreshold(@PathVariable Double threshold) {
         return bookService.getBooksAboveThreshold(threshold);
     }
+
+    @GetMapping("/books/max")
+    public Double getMaxPrice(){
+        return bookService.getMaxPrice();
+    }
 }

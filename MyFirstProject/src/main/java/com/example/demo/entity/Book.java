@@ -30,4 +30,7 @@ public class Book {
 
     @Column(name="PRICE")
     private Double price;
+
+    @Column(name = "QUANTITY_ORDERED")
+    private Integer quantityOrdered;
 }
